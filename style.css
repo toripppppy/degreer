@@ -37,7 +37,7 @@ main h3 {
     margin-top: 20px;
     height: 200px;
     padding: 15px 20px 0;
-    overflow-y: scroll;
+    overflow-y:visible;
 
     font-family: "Ubuntu";
     font-weight: 700;

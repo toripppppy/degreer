@@ -69,10 +69,10 @@ function toCmaj(dataText) {
     const matcheList = dataText.match(/(#|b|)[ⅠⅡⅢⅣⅤⅥⅦ]/g)
 
     // マッチしない場合は無視
-    if (matcheList == null) return;
-
-    for (let note of matcheList) {
-        dataText = dataText.replace(note, CmajDict[note])
+    if (matcheList == null) {
+        for (let note of matcheList) {
+            dataText = dataText.replace(note, CmajDict[note])
+        }
     }
 
     return dataText
@@ -120,16 +120,16 @@ function spanRoot(CmajMode) {
     const matcheList = dataText.match(/[A-G](#|b|)/g)
 
     // マッチしない場合は無視
-    if (matcheList != null) return;
+    if (matcheList != null) {
+        // 整形
+        for (let note of matcheList) {
 
-    // 整形
-    for (let note of matcheList) {
-
-        dataText = dataText.replace(note, `<span class="root">${getDegreeName(note)}</span>`)
-        
-        // オンコードの書き換え
-        const onChordRegexp = new RegExp('/<span class="root">')
-        dataText = dataText.replace(onChordRegexp, '/<span class="on">')
+            dataText = dataText.replace(note, `<span class="root">${getDegreeName(note)}</span>`)
+            
+            // オンコードの書き換え
+            const onChordRegexp = new RegExp('/<span class="root">')
+            dataText = dataText.replace(onChordRegexp, '/<span class="on">')
+        }
     }
 
     // Cメジャーモードの場合はCメジャー表記へ変換
