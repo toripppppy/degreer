@@ -1,5 +1,6 @@
 :root {
     --color-primary: #115293;
+    --color-secondary: #8d8d8d;
 }
 
 body {
@@ -18,11 +19,11 @@ header h1 {
     padding-top: 5px;
     padding-left: 30px;
     font-size: 25px;
-    color: #fafcff;
+    color: #fff;
 }
 
 main {
-    margin: 50px 100px;
+    margin: 50px 350px;
 }
 
 main h3 {
@@ -31,19 +32,21 @@ main h3 {
     padding-bottom: 10px;
 }
 
+
 .textarea {
     margin-top: 20px;
     height: 200px;
-    padding: 10px 20px 0;
+    padding: 15px 20px 0;
     overflow-y: scroll;
 
     font-family: "Ubuntu";
     font-weight: 700;
-    font-size: 13pt;
+    font-size: 15pt;
     line-height: 45px;
+    letter-spacing: 0.02em;
 
-    color: #8d8d8d;
-    border: 1px dotted #8d8d8d;
+    color: var(--color-secondary);
+    border: 1px dotted var(--color-secondary);
 }
 
 #data-input {
@@ -61,7 +64,7 @@ main h3 {
 }
 
 footer{
-    position: absolute;/*←絶対位置*/
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0; /*下に固定*/
@@ -107,7 +110,7 @@ footer{
     width: 100%;
     height: 100%;
     display: block;
-    background: #8d8d8d;
+    background: var(--color-secondary);
     -webkit-transition: 0.2s ease-out;
     transition: 0.2s ease-out;
   }
@@ -129,7 +132,7 @@ footer{
     line-height: 1;
     font-size: 14px;
     font-weight: bold;
-    color: #8d8d8d;
+    color: var(--color-secondary);
     letter-spacing: .5px;
     box-sizing: border-box;
   }
