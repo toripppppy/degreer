@@ -1,24 +1,9 @@
 const dataInput = document.getElementById('data-input')
 const dataOutput = document.getElementById('data-output')
 const keyInput = document.getElementById('key-input')
-const button = document.getElementById('toggle-btn')
 
-let CmajMode = false
-
-
-$(".toggle").on("click", function () {
-    $(".toggle").toggleClass("checked");
-    if (!$('input[name="check"]').prop("checked")) {
-        spanRoot(true)
-        $(".toggle input").prop("checked", true);
-    } else {
-        spanRoot(false)
-        $(".toggle input").prop("checked", false);
-    }
-});
-
-// データ保存用
-let beforeDataText = dataInput.innerText
+dataInput.addEventListener("input", updateOutput)
+keyInput.addEventListener("input", updateOutput)
 
 // ディグリーを取得
 function getDegree(note) {
@@ -47,37 +32,6 @@ function getDegree(note) {
 
     return (degreeDict[note] + s) % 6
 }
-
-
-// Cメジャーに変換
-function toCmaj(dataText) {
-    const CmajDict = {
-        'Ⅰ': 'C',
-        '#Ⅰ': 'C#',
-        'Ⅱ': 'D',
-        'bⅢ': 'Db',
-        'Ⅲ': 'E',
-        'Ⅳ': 'F',
-        '#Ⅳ': 'F#',
-        'Ⅴ': 'G',
-        'bⅥ': 'Ab',
-        'Ⅵ': 'A',
-        'bⅦ': 'Bb',
-        'Ⅶ': 'B',
-    }
-
-    const matcheList = dataText.match(/(#|b|)[ⅠⅡⅢⅣⅤⅥⅦ]/g)
-
-    // マッチしない場合は無視
-    if (matcheList == null) {
-        for (let note of matcheList) {
-            dataText = dataText.replace(note, CmajDict[note])
-        }
-    }
-
-    return dataText
-}
-
 
 // 対応するディグリー表記を取得
 function getDegreeName(note) {
@@ -111,49 +65,22 @@ function getDegreeName(note) {
     return degreeDict[degree]
 }
 
-
-// 整形してアウトプット
-function spanRoot(CmajMode) {
-    // 改行に対応・フラットの表記を統一
-    let dataText = dataInput.innerText.trim().replace(/\n/g, '<br>').replace('♭', 'b')
+// 整形して出力を更新
+function updateOutput() {
+    // 改行・表記揺れに対応
+    let dataText = dataInput.innerText.trim().replace(/\n/g, '<br>').replace('♭', 'b').replace("＃", "#")
     
     const matcheList = dataText.match(/[A-G](#|b|)/g)
 
     // マッチしない場合は無視
     if (matcheList != null) {
         // 整形
-        for (let note of matcheList) {
-
+        for (const note of matcheList) {
             dataText = dataText.replace(note, `<span class="root">${getDegreeName(note)}</span>`)
-            
-            // オンコードの書き換え
-            const onChordRegexp = new RegExp('/<span class="root">')
-            dataText = dataText.replace(onChordRegexp, '/<span class="on">')
         }
+        // オンコードの書き換え
+        dataText = dataText.replaceAll('/<span class="root">', '/<span class="on">')
     }
 
-    // Cメジャーモードの場合はCメジャー表記へ変換
-    if (CmajMode) {
-        dataOutput.innerHTML = toCmaj(dataText)
-    } else {
-        dataOutput.innerHTML = dataText
-    }
-    
+    dataOutput.innerHTML = dataText
 }
-
-
-function update() {
-    // テキストが変更された時のみ更新
-    if (dataInput.innerText != beforeDataText) {
-        spanRoot($('input[name="check"]').prop("checked"))
-    }
-    beforeDataText = dataInput.innerText
-}
-
-
-function onChange() {
-    spanRoot($('input[name="check"]').prop("checked"))
-}
-
-
-setInterval(update, 10)
