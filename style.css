@@ -24,6 +24,12 @@ main {
     margin: 50px 300px;
 }
 
+@media screen and (max-width: 960px) {
+    main {
+        margin: 50px 15px;
+    }
+}
+
 main h3 {
     margin: 0;
     color: #303030;
@@ -49,7 +55,7 @@ main h3 {
     margin-top: 20px;
     height: 200px;
     padding: 15px 20px 0;
-    overflow-y:visible;
+    overflow-y: scroll;
 
     font-family: "Ubuntu";
     font-weight: 700;
