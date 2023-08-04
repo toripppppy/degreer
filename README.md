@@ -4,5 +4,4 @@ Degreer（ディグラー）。入力されたコード・コード進行をデ�
 
 https://toripppppy.github.io/degreer/
 
-<img width="720" alt="Degreer Preview" src="https://user-images.githubusercontent.com/96613082/232279856-c569fb77-6868-4c97-81e2-17014a00bb27.png">
-
+![image](https://github.com/toripppppy/degreer/assets/96613082/07963739-9979-49ae-8d8a-d810cbd2be89)
