@@ -5,6 +5,7 @@
 
 body {
     margin: 0;
+    font-family: "Ubuntu";
 }
 
 header {
@@ -24,9 +25,13 @@ main {
     margin: 50px 300px;
 }
 
+/* スマホ用 */
 @media screen and (max-width: 960px) {
     main {
         margin: 50px 15px;
+    }
+    footer {
+        display: none;
     }
 }
 
@@ -57,7 +62,6 @@ main h3 {
     padding: 15px 20px 0;
     overflow-y: scroll;
 
-    font-family: "Ubuntu";
     font-weight: 700;
     font-size: 15pt;
     line-height: 45px;
